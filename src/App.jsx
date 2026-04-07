@@ -1,6 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
-import { Home } from 'lucide-react'
 
 function App() {
 
@@ -8,7 +6,7 @@ function App() {
     <>
      <BrowserRouter>
        <Routes>
-        <Route index element={<Home />} />
+        <Route index element={} />
         <Route path="*" element={<h1>404</h1>} />
        </Routes>
      </BrowserRouter>
