@@ -1,44 +1,52 @@
-import { Moon, Sun } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import { cn } from '../lib/utils' 
+import { Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
+import { cn } from "../lib/utils";
 
-const ThemeToggle = () => {
-    const[isDarkMode, setIsDarkMode] = useState(false)
+export const ThemeToggle = () => {
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    // ✅ initialize immediately (no flicker)
+    if (typeof window === "undefined") return false;
 
-    useEffect(() => {
-        const storedTheme = localStorage.getItem("theme")
-        if(storedTheme === "dark") {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setIsDarkMode(true)
-            document.documentElement.classList.add("dark")
-        } else {
-            localStorage.setItem("theme", "light")
-            setIsDarkMode(false)
-        }
-    }, [])
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) return storedTheme === "dark";
 
-    const toggleTheme = () => {
-        if(isDarkMode) {
-            document.documentElement.classList.remove("dark")
-            localStorage.setItem("theme", "light")
-            setIsDarkMode(false)
-        } else {
-            document.documentElement.classList.add("dark")
-            localStorage.setItem("theme", "dark")
-            setIsDarkMode(true)
-        }
-    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
+  useEffect(() => {
+    // apply class on mount + when state changes
+    document.documentElement.classList.toggle("dark", isDarkMode);
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+  }, [isDarkMode]);
+
+  useEffect(() => {
+    // ✅ listen to system theme changes
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const handleChange = (e) => {
+      const storedTheme = localStorage.getItem("theme");
+      if (!storedTheme) {
+        setIsDarkMode(e.matches);
+      }
+    };
+
+    media.addEventListener("change", handleChange);
+    return () => media.removeEventListener("change", handleChange);
+  }, []);
 
   return (
-    <button 
-         onClick={toggleTheme}
-         className={cn("fixed max-sm:hidden top-5 right-5 z-50 p-2 transition-colors duration-300",
-            "focus:outline-hidden"
-         )}
-         >
-         {isDarkMode? <Sun className='h-6 w-6 text-yellow-300' /> : <Moon className='h-6 w-6 text-blue-600' />}
+    <button
+      onClick={() => setIsDarkMode((prev) => !prev)}
+      className={cn(
+        "fixed max-sm:hidden top-5 right-5 z-50 p-2 rounded-full transition-colors duration-300",
+        "focus:outline-none"
+      )}
+    >
+      {isDarkMode ? (
+        <Sun className="h-6 w-6 text-yellow-300" />
+      ) : (
+        <Moon className="h-6 w-6 text-blue-900" />
+      )}
     </button>
-  )
-}
-
-export default ThemeToggle
+  );
+};
