@@ -1,4 +1,4 @@
-import { ArrowUp } from "lucide-react";
+import { LuArrowUp } from "react-icons/lu";
 
 export const Footer = () => {
   return (
@@ -6,13 +6,14 @@ export const Footer = () => {
       {" "}
       <p className="text-sm text-muted-foreground">
         {" "}
-        &copy; {new Date().getFullYear()} Abdul Wasit Karimi. All rights reserved.
+        &copy; {new Date().getFullYear()} Abdul Wasit Karimi. All rights
+        reserved.
       </p>
       <a
         href="#hero"
         className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
       >
-        <ArrowUp size={20} />
+        <LuArrowUp size={20} />
       </a>
     </footer>
   );

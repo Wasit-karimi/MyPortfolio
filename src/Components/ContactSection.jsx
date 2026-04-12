@@ -1,11 +1,11 @@
 import {
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-} from "lucide-react";
+  LuInstagram,
+  LuLinkedin,
+  LuMail,
+  LuMapPin,
+  LuPhone,
+  LuSend,
+} from "react-icons/lu";
 import { cn } from "../lib/utils";
 import { useState } from "react";
 
@@ -44,7 +44,7 @@ export const ContactSection = () => {
             <div className="space-y-6 justify-center">
               <div className="flex items-start space-x-4">
                 <div className="p-3 rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />{" "}
+                  <LuMail className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-medium"> Email</h4>
@@ -58,7 +58,7 @@ export const ContactSection = () => {
               </div>
               <div className="flex items-start space-x-4">
                 <div className="p-3 rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />{" "}
+                  <LuPhone className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-medium"> Phone</h4>
@@ -72,7 +72,7 @@ export const ContactSection = () => {
               </div>
               <div className="flex items-start space-x-4">
                 <div className="p-3 rounded-full bg-primary/10">
-                  <MapPin className="h-6 w-6 text-primary" />{" "}
+                  <LuMapPin className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-medium"> Location</h4>
@@ -87,10 +87,10 @@ export const ContactSection = () => {
               <h4 className="font-medium mb-4"> Connect With Me</h4>
               <div className="flex space-x-4 justify-center">
                 <a href="#" target="_blank">
-                  <Linkedin />
+                  <LuLinkedin className="h-5 w-5 text-primary" />
                 </a>
                 <a href="#" target="_blank">
-                  <Instagram />
+                  <LuInstagram className="h-5 w-5 text-primary" />
                 </a>
               </div>
             </div>
@@ -160,11 +160,11 @@ export const ContactSection = () => {
                 type="submit"
                 disabled={isSubmitting}
                 className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2"
+                  "cosmic-button w-full flex items-center justify-center gap-2",
                 )}
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
-                <Send size={16} />
+                <LuSend size={16} />
               </button>
             </form>
           </div>
