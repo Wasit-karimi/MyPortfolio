@@ -1,4 +1,5 @@
 import {
+  LuFacebook,
   LuInstagram,
   LuLinkedin,
   LuMail,
@@ -111,11 +112,14 @@ export const ContactSection = () => {
             <div className="pt-8">
               <h4 className="font-medium mb-4"> Connect With Me</h4>
               <div className="flex space-x-4 justify-center">
-                <a href="#" target="_blank">
+                <a href="https://www.linkedin.com/in/wasit-karimi-458585374?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
                   <LuLinkedin className="h-5 w-5 text-primary" />
                 </a>
-                <a href="#" target="_blank">
+                <a href="https://www.instagram.com/wasitkarimi?igsh=MXU3N245ZXVhYzg0bA==" target="_blank">
                   <LuInstagram className="h-5 w-5 text-primary" />
+                </a>
+                <a href="https://www.facebook.com/share/1DWZ2wLbsZ/" target="_blank">
+                  <LuFacebook className="h-5 w-5 text-primary" />
                 </a>
               </div>
             </div>
