@@ -21,12 +21,12 @@ const projects = [
   },
   {
     id: 3,
-    title: "Third Project",
-    description: "A brief description of the third project.",
+    title: "GTA VI",
+    description: "GTA VI Landing Page",
     image: "",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
-    demoUrl: "#",
-    githubUrl: "#",
+    tags: ["React", "GSAP", "Tailwind CSS"],
+    demoUrl: "https://gta-vi-landing-page-8yazonil2-wasitkarimis-projects.vercel.app/",
+    githubUrl: "https://github.com/Wasit-karimi/gta_vi_landing-page.git",
   },
 ];
 
