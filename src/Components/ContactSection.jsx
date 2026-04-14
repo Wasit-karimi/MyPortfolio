@@ -11,16 +11,41 @@ import { useState } from "react";
 
 export const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      alert("Form submitted successfully!");
-      setIsSubmitting(false);
-    }, 1500);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Message sent successfully 🚀");
+        setName("");
+        setEmail("");
+        setMessage("");
+        setIsSubmitting(false);
+      } else {
+        alert(data.message || "Something went wrong");
+      }
+    } catch (error) {
+      alert("Server error", {error});
+    }
   };
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
@@ -115,6 +140,8 @@ export const ContactSection = () => {
                   type="text"
                   id="name"
                   name="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
                   placeholder="Wasit Karimi..."
@@ -133,6 +160,8 @@ export const ContactSection = () => {
                   type="email"
                   id="email"
                   name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
                   placeholder="you@gmail.com"
@@ -150,6 +179,8 @@ export const ContactSection = () => {
                 <textarea
                   id="message"
                   name="message"
+                  value={message}
+                  onChange={(e)=>setMessage(e.target.value)}
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary resize-none"
                   placeholder="Hello, I'd like to talk about..."
