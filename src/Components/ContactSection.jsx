@@ -45,7 +45,7 @@ export const ContactSection = () => {
         alert(data.message || "Something went wrong");
       }
     } catch (error) {
-      alert("Server error", { error });
+      alert("Server error", {error});
     }
   };
   return (
@@ -110,7 +110,7 @@ export const ContactSection = () => {
             </div>
 
             <div className="pt-8">
-              <h4 className="font-medium mb-4">Connect With Me</h4>
+              <h4 className="font-medium mb-4"> Connect With Me</h4>
               <div className="flex space-x-4 justify-center">
                 <a href="https://www.linkedin.com/in/wasit-karimi-458585374?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
                   <LuLinkedin className="h-5 w-5 text-primary" />
@@ -127,11 +127,11 @@ export const ContactSection = () => {
 
           <div
             className="bg-card p-8 rounded-lg shadow-xs"
+            onSubmit={handleSubmit}
           >
-            <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
+            <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
 
-
-            <form onSubmit={handleSubmit} className="space-y-6" >
+            <form className="space-y-6">
               <div>
                 <label
                   htmlFor="name"
@@ -184,7 +184,7 @@ export const ContactSection = () => {
                   id="message"
                   name="message"
                   value={message}
-                  onChange={(e) => setMessage(e.target.value)}
+                  onChange={(e)=>setMessage(e.target.value)}
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary resize-none"
                   placeholder="Hello, I'd like to talk about..."
